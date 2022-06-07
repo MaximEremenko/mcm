@@ -632,7 +632,7 @@ public:
             const bool kSupportPrefix = true;
             bool next_word = false;
             const size_t max_out = static_cast<size_t>(out_limit - out_ptr);
-            const size_t min_len = kSupportPrefix ? std::min(std::max(word_len, kMinWordLen), static_cast<size_t>(6)) : word_len;
+            const size_t min_len = kSupportPrefix ? std::min(std::max(word_len, static_cast<size_t>(kMinWordLen)), static_cast<size_t>(6)) : word_len;
             if (word_len <= kMaxWordLen) {
               for (size_t cur_len = word_len; cur_len >= min_len; --cur_len) {
                 WordCC cc = GetWordCase(in_ptr, cur_len);

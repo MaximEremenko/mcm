@@ -334,7 +334,7 @@ private:
   size_t GetOffset(Entry* entry) const {
     return reinterpret_cast<uint8_t*>(entry) - begin_;
   }
-
+  const uint32_t kInvalidPos = 0xFFFFFFFF;
   void ClearHashTable() {
     std::fill(hash_table_, hash_table_ + hash_mask_ + 1, kInvalidPos);
   }
@@ -384,7 +384,7 @@ private:
   uint32_t* hash_table_;
   size_t hash_mask_;
   uint32_t pos_mask_;
-  static constexpr uint32_t kInvalidPos = 0xFFFFFFFF;
+  
 };
 
 #endif

@@ -33,7 +33,7 @@
 #include <list>
 #include <ctime>
 #include <iomanip>
-#include <malloc.h>
+#include <stdlib.h>
 
 #include "Stream.hpp"
 #include "Util.hpp"
@@ -139,7 +139,7 @@ public:
 
 // In memory compressor.
 class MemoryCompressor : public Compressor {
-  static const size_t kBufferSize = 32 * MB;
+  const size_t kBufferSize = 32 * MB;
 public:
   virtual size_t getMaxExpansion(size_t s) = 0;
   virtual size_t compress(uint8_t* in, uint8_t* out, size_t count) = 0;

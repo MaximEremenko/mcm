@@ -123,7 +123,7 @@ public:
   }
 
   File() {}
-  File(const std::string& file_name, std::ios_base::open_mode mode = std::ios_base::in | std::ios_base::binary) {
+  File(const std::string& file_name, std::ios_base::openmode mode = std::ios_base::in | std::ios_base::binary) {
     open(file_name, mode);
   }
 
@@ -173,7 +173,7 @@ public:
   }
 
   // Return 0 if successful, errno otherwise.
-  int open(const std::string& fileName, std::ios_base::open_mode mode = std::ios_base::in | std::ios_base::binary) {
+  int open(const std::string& fileName, std::ios_base::openmode mode = std::ios_base::in | std::ios_base::binary) {
     close();
     std::ostringstream oss;
     if (mode & std::ios_base::in) {
@@ -461,7 +461,7 @@ public:
   class CachedFile {
   public:
     std::string name;
-    std::ios_base::open_mode mode;
+    std::ios_base::openmode mode;
     File file;
     uint32_t count = 0;
 
@@ -470,7 +470,7 @@ public:
   };
 
   // Clean up.
-  CachedFile* open(const std::string& name, std::ios_base::open_mode mode = std::ios_base::binary) {
+  CachedFile* open(const std::string& name, std::ios_base::openmode mode = std::ios_base::binary) {
     CachedFile* ret = nullptr;
     lock.lock();
     auto it = files.find(name);

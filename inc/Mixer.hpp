@@ -234,8 +234,12 @@ public:
 
     // SSE5: _mm_haddd_epi16?
     // 2 madd, 2 shuffles = ~8 clocks?
-    dp = _mm_add_epi32(dp, _mm_shuffle_epi32(dp, shuffle<1, 0, 3, 2>::value));
-    dp = _mm_add_epi32(dp, _mm_shuffle_epi32(dp, shuffle<2, 3, 0, 1>::value));
+    int val1 = shuffle<1, 0, 3, 2>::value;
+    __m128i shflf = _mm_shuffle_epi32(dp, val1);
+    dp = _mm_add_epi32(dp, shflf);
+    int val2 = shuffle<2, 3, 0, 1>::value;
+    __m128i shfls = _mm_shuffle_epi32(dp, val2);
+    dp = _mm_add_epi32(dp, shfls);
 
     return (_mm_cvtsi128_si32(dp) + (skew << wshift)) >> fp_shift;
   }

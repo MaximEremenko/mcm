@@ -217,7 +217,7 @@ public:
 // variable order rolz.
 class VRolz {
   static const uint32_t kMinMatch = 2U;
-  static const uint32_t kMaxMatch = 0xFU + kMinMatch;
+  const uint32_t kMaxMatch = 0xFU + kMinMatch;
 public:
   template<uint32_t kSize>
   class RolzTable {
@@ -398,7 +398,7 @@ public:
 template <class MatchFinder>
 class LZ16 : public MemoryCompressor {
   static constexpr size_t kMinMatch = 5;
-  static constexpr size_t kMaxMatch = 15;
+  const size_t kMaxMatch = 15;
   static constexpr size_t kMaxNonMatch = 15;
 public:
   virtual size_t getMaxExpansion(size_t in_size) {
